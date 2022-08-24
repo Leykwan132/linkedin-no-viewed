@@ -2,11 +2,27 @@ import Image from "next/image";
 import React from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../../atoms/profileAtoms.ts";
+import FloatingButton from "../../components/FloatingButton.tsx";
+
+const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const arrayTitle = [
+  "Languages",
+  "Education",
+  "Patents",
+  "Certs",
+  "Projects",
+  "Publications",
+  "Courses",
+  "Volunteering",
+  "Test Scores",
+  "Experiences",
+];
 const LinkedinProfile = () => {
   const profileData = useRecoilValue(profileState);
+  console.log(profileData);
   return (
-    <div className="pt-24 px-5 flex flex-col justify-center items-center">
-      <div className="flex space-x-32 ">
+    <div className="flex flex-col h-screen pt-24 px-20">
+      <div className="flex items-center justify-center space-x-32 ">
         <div className="relative w-[300px] h-[300px] fadeLeftMini">
           <Image
             src={profileData.profile_pic_url}
@@ -42,6 +58,15 @@ const LinkedinProfile = () => {
           </div>
         </div>
       </div>
+      <div className="mt-20 grid grid-cols-5 gap-10">
+        {arrayTest.map((item, i) => (
+          <FloatingButton title={arrayTitle[i]} key={i} />
+        ))}
+      </div>
+
+      <button className="font-mono mt-10 bg-gray-700 py-3 px-5 rounded-lg self-center text-xs ">
+        Search another Profile
+      </button>
     </div>
   );
 };
