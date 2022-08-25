@@ -1,6 +1,6 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { profileState } from "../atoms/profileAtoms.ts";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { profileState, canvasState } from "../atoms/profileAtoms.ts";
 import {
   AcademicCapIcon,
   BeakerIcon,
@@ -44,10 +44,23 @@ const Icon = {
 };
 const FloatingButton = ({ title }: Props) => {
   const profileData = useRecoilValue(profileState);
+  const canvasData = useRecoilValue(canvasState);
+  const setCanvasState = useSetRecoilState(canvasState);
+
   console.log(profileData);
   const handleClick = () => {
     if (profileData[title].length === 0) {
       toast.error("The user did not enter any information.");
+    } else {
+      if (canvasData === title) {
+        toast.success(`${title} field is deselected!`, {
+          icon: "💩",
+        });
+        setCanvasState("Bio");
+      } else {
+        toast.success(`${title} field selected!`);
+        setCanvasState(title);
+      }
     }
   };
   return (
@@ -56,7 +69,9 @@ const FloatingButton = ({ title }: Props) => {
         profileData[title].length === 0
           ? "cursor-not-allowed border-gray-500"
           : "cursor-pointer hover:scale-110 ease-in-out duration-200  hover:border-white border-gray-500"
-      }  relative grid place-items-center border py-7 text-[13px] rounded-xl font-mono `}
+      }  
+      ${canvasData === title && "bg-gradient-to-r to-gray-600 from-slate-800"}
+      relative grid place-items-center border py-7 text-[13px] rounded-xl font-mono `}
       onClick={handleClick}
     >
       <div className="flex justify-center items-center">
