@@ -39,6 +39,11 @@ a {
   animation-fill-mode: both;
 }
 
+.fade {
+  animation: fade 2s;
+  animation-fill-mode: both;
+}
+
 @keyframes fadeLeftMini {
   0% {
     opacity: 0;
@@ -47,6 +52,15 @@ a {
   100% {
     opacity: 1;
     transform: translateZ(0);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
