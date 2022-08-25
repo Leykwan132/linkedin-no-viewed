@@ -3,6 +3,7 @@ import React from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../../atoms/profileAtoms.ts";
 import FloatingButton from "../../components/FloatingButton.tsx";
+import Link from "next/link";
 
 const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arrayTitle = [
@@ -14,7 +15,7 @@ const arrayTitle = [
   "Publications",
   "Courses",
   "Volunteering",
-  "Test Scores",
+  "Test_Scores",
   "Experiences",
 ];
 const LinkedinProfile = () => {
@@ -38,35 +39,36 @@ const LinkedinProfile = () => {
           <div className="text-gray-300 font-mono font-semibold">
             {`${profileData?.city}, ${profileData?.country_full_name}`}
           </div>
-          <div className="text-gray-300 font-mono font-semibold">
-            {`${profileData?.education[0]?.degree_name}, ${profileData?.education[0]?.field_of_study}`}
-          </div>
+          <p className="text-gray-300 font-mono font-semibold max-w-[500px] text-center">
+            {`${profileData?.Education[0]?.degree_name}, ${profileData?.Education[0]?.field_of_study}`}
+          </p>
           <div className="flex items-center space-x-2">
             <Image
-              src={profileData?.education[0]?.logo_url}
+              src={profileData?.Education[0]?.logo_url}
               className="rounded-full"
               objectFit="contain"
               width="25px"
               height="25px"
             />
-            <p className="text-gray-300 font-mono font-semibold">
-              {profileData?.education[0].school}
+            <p className="text-gray-300 font-mono font-semibold text-center">
+              {profileData?.Education[0].school}
             </p>
           </div>
-          <div className="text-gray-300 font-mono font-semibold">
+          <p className="text-gray-300 font-mono font-semibold text-center">
             {`Current ${profileData?.headline}`}
-          </div>
+          </p>
         </div>
       </div>
-      <div className="mt-20 grid grid-cols-5 gap-10">
+      <div className="mt-20 grid grid-cols-5 gap-10 fade">
         {arrayTest.map((item, i) => (
           <FloatingButton title={arrayTitle[i]} key={i} />
         ))}
       </div>
-
-      <button className="font-mono mt-10 bg-gray-700 py-3 px-5 rounded-lg self-center text-xs ">
-        Search another Profile
-      </button>
+      <Link href="/">
+        <button className="font-mono mt-10 bg-gray-700 py-3 px-9 rounded-lg self-center text-xs ">
+          Search another Profile
+        </button>
+      </Link>
     </div>
   );
 };
