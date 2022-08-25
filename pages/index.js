@@ -37,6 +37,27 @@ export default function Home() {
         toast.success("Profile found!", {
           id: toastId,
         });
+        data.Courses = data.accomplishment_courses;
+        delete data.accomplishment_courses;
+        data.Languages = data.languages;
+        delete data.languages;
+        data.Education = data.education;
+        delete data.education;
+        data.Patents = data.accomplishment_patents;
+        delete data.accomplishment_patents;
+        data.Certs = data.certifications;
+        delete data.certifications;
+        data.Projects = data.accomplishment_projects;
+        delete data.accomplishment_projects;
+        data.Publications = data.accomplishment_publications;
+        delete data.accomplishment_publications;
+        data.Volunteering = data.volunteer_work;
+        delete data.volunteer_work;
+        data.Test_Scores = data.accomplishment_test_scores;
+        delete data.accomplishment_test_scores;
+        data.Experiences = data.experiences;
+        delete data.experiences;
+
         setProfileUrl(data);
         router.push("/profile/" + data.last_name);
         setValue("profileUrl", "");
@@ -58,29 +79,29 @@ export default function Home() {
         {stalk ? (
           <h1
             onClick={() => setStalk(!stalk)}
-            className="text-red-500 cursor-pointer"
+            className="text-red-500 cursor-pointer font-mono"
           >
             Stalk
           </h1>
         ) : (
           <h1
             onClick={() => setStalk(!stalk)}
-            className="text-sky-500 cursor-pointer"
+            className="text-sky-500 cursor-pointer font-mono"
           >
             Search
           </h1>
         )}
-        <h1>the Linkedin Profile</h1>
+        <h1 className="font-mono">the Linkedin Profile</h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <input
           {...register("profileUrl", { required: true })}
-          className="bg-gray-600 p-2 rounded-md mt-3 w-80"
+          className="bg-gray-600 p-2 rounded-md mt-3 w-80 font-mono"
           type={"url"}
-          placeholder="https://www.linkedin.com/in/..."
+          placeholder="https://www.linkedin.com/in/profile/..."
         />
         {errors.profileUrl?.type === "required" && (
-          <span className="text-red-300 mt-4 text-center font-light">
+          <span className="text-red-300 mt-4 text-center font-light font-mono">
             Please enter the profile url.
           </span>
         )}
@@ -89,12 +110,14 @@ export default function Home() {
           type={"submit"}
           className={`${
             stalk ? "bg-red-500" : "bg-sky-500"
-          } p-2 text-xs px-4 mt-4 rounded-md`}
+          } p-2 text-xs px-4 mt-4 rounded-md font-mono`}
         >
           {stalk ? "Stalk the profile" : "Search the profile"}
         </button>
       </form>
-      <div className="fixed bottom-2">Total profile searched so far: 12</div>
+      <div className="fixed bottom-2 font-mono">
+        Total profile searched so far: 12
+      </div>
     </div>
   );
 }
