@@ -40,7 +40,7 @@ a {
 }
 
 .fade {
-  animation: fade 2s;
+  animation: fade 0.5s;
   animation-fill-mode: both;
 }
 
