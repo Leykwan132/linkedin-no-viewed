@@ -47,15 +47,11 @@ const FloatingButton = ({ title }: Props) => {
   const canvasData = useRecoilValue(canvasState);
   const setCanvasState = useSetRecoilState(canvasState);
 
-  console.log(profileData);
   const handleClick = () => {
     if (profileData[title].length === 0) {
       toast.error("The user did not enter any information.");
     } else {
       if (canvasData === title) {
-        toast.success(`${title} field is deselected!`, {
-          icon: "💩",
-        });
         setCanvasState("Bio");
       } else {
         toast.success(`${title} field selected!`);
