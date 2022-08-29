@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 import { profileState } from "../atoms/profileAtoms.ts";
 
 export default function Home() {
   const router = useRouter();
-  const setProfileUrl = useSetRecoilState(profileState);
+  const [profile, setProfile] = useRecoilState(profileState);
+
   const {
     register,
     handleSubmit,
@@ -58,7 +59,8 @@ export default function Home() {
         data.Experiences = data.experiences;
         delete data.experiences;
 
-        setProfileUrl(data);
+        setProfile(data);
+        console.log(profile);
         router.push("/profile/" + data.last_name);
         setValue("profileUrl", "");
       }
@@ -74,7 +76,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative flex flex-col font-bold justify-center items-center font-serif h-screen w-screen">
+    <div className="relative flex flex-col font-bold justify-center items-center font-serif h-screen w-screen text-white">
       <div className="flex space-x-2 items-center text-xl">
         {stalk ? (
           <h1
