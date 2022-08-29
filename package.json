@@ -20,7 +20,8 @@
     "react-hook-form": "^7.34.2",
     "react-hot-toast": "^2.3.0",
     "react-icons": "^4.4.0",
-    "recoil": "^0.7.5"
+    "recoil": "^0.7.5",
+    "recoil-persist": "^4.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
