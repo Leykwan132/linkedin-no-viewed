@@ -1,10 +1,10 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { canvasState, profileState } from "../../atoms/profileAtoms.ts";
-import TestScoresRow from "./components/TestScoresRow.tsx";
 import { SiPytest } from "react-icons/si";
 import { GiPapers } from "react-icons/gi";
 import { TbPaperBag } from "react-icons/tb";
+import TestScoresRow from "./components/TestScoresContentRow.tsx";
 type Props = {};
 
 const Emoji = {
