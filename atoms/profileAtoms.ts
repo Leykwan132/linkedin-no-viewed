@@ -16,3 +16,9 @@ export const canvasState = atom({
   default: "Bio", // default value (aka initial value)
   effects_UNSTABLE: [persistAtom],
 });
+
+export const linkedinState = atom({
+  key: "linkedin", // unique ID (with respect to other atoms/selectors)
+  default: "", // default value (aka initial value)
+  effects_UNSTABLE: [persistAtom],
+});

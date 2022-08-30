@@ -4,11 +4,12 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
-import { profileState } from "../atoms/profileAtoms.ts";
+import { profileState, linkedinState } from "../atoms/profileAtoms.ts";
 
 export default function Home() {
   const router = useRouter();
   const [profile, setProfile] = useRecoilState(profileState);
+  const [linkedinUrl, setLinkedinUrl] = useRecoilState(linkedinState);
 
   const {
     register,
@@ -60,6 +61,8 @@ export default function Home() {
         delete data.experiences;
 
         setProfile(data);
+        console.log(profileUrl);
+        setLinkedinUrl(profileUrl);
         router.push("/profile/" + data.last_name);
         setValue("profileUrl", "");
       }

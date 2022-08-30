@@ -1,11 +1,14 @@
 import Image from "next/image";
-import React, { useEffect } from "react";
-import { useRecoilState, atom } from "recoil";
-import { canvasState } from "../../atoms/profileAtoms.ts";
+import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  canvasState,
+  profileState,
+  linkedinState,
+} from "../../atoms/profileAtoms.ts";
 import FloatingButton from "../../components/FloatingButton.tsx";
 import Link from "next/link";
 import CanvasContent from "../../components/canvasContent.tsx";
-import { profileState } from "../../atoms/profileAtoms.ts";
 
 const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arrayTitle = [
@@ -23,6 +26,8 @@ const arrayTitle = [
 const LinkedinProfile = () => {
   const [profile, setProfile] = useRecoilState(profileState);
   const [canvas, setCanvas] = useRecoilState(canvasState);
+  const linkedinUrl = useRecoilValue(linkedinState);
+
   return (
     <div className="flex flex-col h-screen pt-24 px-20">
       {Object.values(profile).length > 0 && (
@@ -83,16 +88,26 @@ const LinkedinProfile = () => {
               <FloatingButton title={arrayTitle[i]} key={i} />
             ))}
           </div>
-          <Link href="/">
-            <button
-              onClick={() => {
-                setCanvas("Bio");
-              }}
-              className="font-mono mt-10 bg-gray-700 py-3 px-9 rounded-lg self-center text-xs "
+          <div className="flex items-center justify-center space-x-8">
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              className="font-mono mt-10 bg-[#0077b5] py-3 px-9 rounded-lg self-center text-xs "
             >
-              Search another Profile
-            </button>
-          </Link>
+              Lookup on Linkedin
+            </a>
+
+            <Link href="/">
+              <button
+                onClick={() => {
+                  setCanvas("Bio");
+                }}
+                className="font-mono mt-10 bg-gray-700 py-3 px-9 rounded-lg self-center text-xs "
+              >
+                Search another Profile
+              </button>
+            </Link>
+          </div>
         </>
       )}
     </div>
