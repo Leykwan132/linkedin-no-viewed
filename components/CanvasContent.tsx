@@ -4,6 +4,7 @@ import { canvasState, profileState } from "../atoms/profileAtoms.ts";
 import EduContent from "./CanvasContent/EduContent.tsx";
 import ExperienceContent from "./CanvasContent/ExperienceContent.tsx";
 import LanguageContent from "./CanvasContent/LanguageContent.tsx";
+import TestScore from "./CanvasContent/TestScore.tsx";
 
 type Props = {};
 
@@ -23,6 +24,7 @@ const contentType: Content = {
   Education: <EduContent />,
   Languages: <LanguageContent />,
   Experiences: <ExperienceContent />,
+  Test_Scores: <TestScore />,
 };
 const CanvasContent = (props: Props) => {
   const profileData = useRecoilValue(profileState);
