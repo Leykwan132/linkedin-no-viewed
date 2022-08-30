@@ -2,10 +2,12 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { canvasState, profileState } from "../atoms/profileAtoms.ts";
 import CertContent from "./CanvasContent/CertContent.tsx";
+import CoursesContent from "./CanvasContent/CoursesContent.tsx";
 import EduContent from "./CanvasContent/EduContent.tsx";
 import ExperienceContent from "./CanvasContent/ExperienceContent.tsx";
 import LanguageContent from "./CanvasContent/LanguageContent.tsx";
-import TestScore from "./CanvasContent/TestScore.tsx";
+import ProjectContent from "./CanvasContent/ProjectContent.tsx";
+import TestScore from "./CanvasContent/TestScoreContent.tsx";
 import VolunteeringContent from "./CanvasContent/VolunteeringContent.tsx";
 
 type Props = {};
@@ -29,6 +31,8 @@ const contentType: Content = {
   Test_Scores: <TestScore />,
   Volunteering: <VolunteeringContent />,
   Certs: <CertContent />,
+  Projects: <ProjectContent />,
+  Courses: <CoursesContent />,
 };
 const CanvasContent = (props: Props) => {
   const profileData = useRecoilValue(profileState);
