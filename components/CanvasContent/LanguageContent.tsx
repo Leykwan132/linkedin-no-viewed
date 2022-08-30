@@ -9,7 +9,7 @@ const LanguageContent = (props: Props) => {
   const profileData = useRecoilValue(profileState);
   const canvasData = useRecoilValue(canvasState);
   const languageData = profileData[canvasData];
-  console.log(languageData);
+
   return (
     <div className="space-y-6 mx-10 fade w-full">
       {languageData.map((item, i) => (
