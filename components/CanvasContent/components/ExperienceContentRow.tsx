@@ -42,7 +42,7 @@ const ExperienceContentRow = ({ data }: Props) => {
   return (
     <div className="font-mono text-[15px] space-y-3">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 max-w-sm">
           <Avatar
             alt="logo"
             src={data?.logo_url}
@@ -57,7 +57,7 @@ const ExperienceContentRow = ({ data }: Props) => {
               {data.company}
             </a>
           ) : (
-            <p className="font-bold">{data.company}</p>
+            <p className="font-bold cursor-default">{data.company}</p>
           )}
         </div>
         <p className="text-xs font-thin ml-9">{`${start_date} - ${end_date}`}</p>
