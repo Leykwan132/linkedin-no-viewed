@@ -60,7 +60,6 @@ export default function Home() {
         delete data.experiences;
 
         setProfile(data);
-        console.log(profile);
         router.push("/profile/" + data.last_name);
         setValue("profileUrl", "");
       }
@@ -68,7 +67,6 @@ export default function Home() {
       toast.error("Error!", {
         id: toastId,
       });
-      console.log(err);
     }
   };
   const onSubmit = (data) => {

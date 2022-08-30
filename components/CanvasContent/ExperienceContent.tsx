@@ -12,9 +12,11 @@ const ExperienceContent = (props: Props) => {
   const counter = [0, 1, 2];
   return (
     <div className="space-y-6 fade w-full">
-      {counter.map((item, i) => (
-        <ExperienceContentRow key={i} data={expData[item]} />
-      ))}
+      {expData.length <= 2
+        ? expData.map((item, i) => <ExperienceContentRow key={i} data={item} />)
+        : counter.map((item, i) => (
+            <ExperienceContentRow key={i} data={expData[item]} />
+          ))}
     </div>
   );
 };
