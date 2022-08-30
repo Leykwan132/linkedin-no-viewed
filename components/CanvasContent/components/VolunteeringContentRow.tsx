@@ -22,7 +22,6 @@ const Month = {
 };
 
 const VolunteeringContentRow = ({ data }: Props) => {
-  console.log(data);
   let start_date;
   let end_date;
   if (data.starts_at.month) {

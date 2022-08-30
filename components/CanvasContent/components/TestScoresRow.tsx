@@ -7,7 +7,6 @@ type Props = {
 };
 
 const TestScoresRow = ({ data, emoji }: Props) => {
-  console.log(data);
   return (
     <div className="font-mono text-white flex flex-col  space-y-3  px-2">
       <p className="font-bold">{data.name}</p>
