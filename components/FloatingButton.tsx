@@ -62,7 +62,9 @@ const FloatingButton = ({ title }: Props) => {
       if (canvasData === title) {
         setCanvasState("Bio");
       } else {
-        toast.success(`${title} field selected!`);
+        toast.success(
+          `${title === "Test_Scores" ? "Test Scores" : title} field selected!`
+        );
         setCanvasState(title);
       }
     }
