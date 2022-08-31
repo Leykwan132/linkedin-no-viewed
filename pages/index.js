@@ -1,10 +1,41 @@
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
-import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { profileState, linkedinState } from "../atoms/profileAtoms.ts";
+import _ from "lodash";
+
+const objMapper = (obj) => {
+  let newObj = _.mapKeys(obj, (value, key) => {
+    switch (key) {
+      case "accomplishment_courses":
+        return "Courses";
+      case "languages":
+        return "Languages";
+      case "education":
+        return "Education";
+      case "accomplishment_patents":
+        return "Patents";
+      case "certifications":
+        return "Certs";
+      case "accomplishment_projects":
+        return "Projects";
+      case "accomplishment_publications":
+        return "Publications";
+      case "volunteer_work":
+        return "Volunteering";
+      case "accomplishment_test_scores":
+        return "Test_Scores";
+      case "experiences":
+        return "Experiences";
+      default:
+        return;
+    }
+  });
+  return newObj;
+};
 
 export default function Home() {
   const router = useRouter();
@@ -31,7 +62,11 @@ export default function Home() {
     };
     try {
       let { data } = await axios(options);
-      if (typeof data !== "object") {
+      if (data === "Server is busy. Please try again later.") {
+        toast.error(data, {
+          id: toastId,
+        });
+      } else if (typeof data !== "object") {
         toast.error("Please provide a valid profile url!", {
           id: toastId,
         });
@@ -39,31 +74,11 @@ export default function Home() {
         toast.success("Profile found!", {
           id: toastId,
         });
-        data.Courses = data.accomplishment_courses;
-        delete data.accomplishment_courses;
-        data.Languages = data.languages;
-        delete data.languages;
-        data.Education = data.education;
-        delete data.education;
-        data.Patents = data.accomplishment_patents;
-        delete data.accomplishment_patents;
-        data.Certs = data.certifications;
-        delete data.certifications;
-        data.Projects = data.accomplishment_projects;
-        delete data.accomplishment_projects;
-        data.Publications = data.accomplishment_publications;
-        delete data.accomplishment_publications;
-        data.Volunteering = data.volunteer_work;
-        delete data.volunteer_work;
-        data.Test_Scores = data.accomplishment_test_scores;
-        delete data.accomplishment_test_scores;
-        data.Experiences = data.experiences;
-        delete data.experiences;
 
-        setProfile(data);
-        console.log(profileUrl);
+        const renamed_data = objMapper(data);
+        setProfile(renamed_data);
         setLinkedinUrl(profileUrl);
-        router.push("/profile/" + data.last_name);
+        router.push("/profile/" + renamed_data.last_name);
         setValue("profileUrl", "");
       }
     } catch (err) {
