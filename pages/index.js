@@ -7,32 +7,22 @@ import { useRecoilState } from "recoil";
 import { profileState, linkedinState } from "../atoms/profileAtoms.ts";
 import _ from "lodash";
 
+const keys = {
+  accomplishment_courses: "Courses",
+  languages: "Languages",
+  education: "Education",
+  accomplishment_patents: "Patents",
+  certifications: "Certs",
+  accomplishment_projects: "Projects",
+  accomplishment_publications: "Publications",
+  volunteer_work: "Volunteering",
+  accomplishment_test_scores: "Test_Scores",
+  experiences: "Experiences",
+};
+
 const objMapper = (obj) => {
   let newObj = _.mapKeys(obj, (value, key) => {
-    switch (key) {
-      case "accomplishment_courses":
-        return "Courses";
-      case "languages":
-        return "Languages";
-      case "education":
-        return "Education";
-      case "accomplishment_patents":
-        return "Patents";
-      case "certifications":
-        return "Certs";
-      case "accomplishment_projects":
-        return "Projects";
-      case "accomplishment_publications":
-        return "Publications";
-      case "volunteer_work":
-        return "Volunteering";
-      case "accomplishment_test_scores":
-        return "Test_Scores";
-      case "experiences":
-        return "Experiences";
-      default:
-        return;
-    }
+    return key in keys ? keys[key] : key;
   });
   return newObj;
 };
