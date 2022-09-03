@@ -68,10 +68,17 @@ export default function Home({ searchCount }) {
           id: toastId,
         });
 
-        const renamed_data = objMapper(data);
-        setProfile(renamed_data);
-        setLinkedinUrl(profileUrl);
-        router.push("/profile/" + renamed_data.last_name);
+        if (profileUrl.endsWith("/")) {
+          router.push(
+            "/profile/" +
+              profileUrl.split("/")[profileUrl.split("/").length - 2]
+          );
+        } else {
+          router.push(
+            "/profile/" +
+              profileUrl.split("/")[profileUrl.split("/").length - 1]
+          );
+        }
         setValue("profileUrl", "");
 
         const updatedCount = searchCount + 1;
