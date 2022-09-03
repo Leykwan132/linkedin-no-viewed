@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   canvasState,
@@ -9,7 +9,28 @@ import {
 import FloatingButton from "../../components/FloatingButton.tsx";
 import Link from "next/link";
 import CanvasContent from "../../components/canvasContent.tsx";
+import _ from "lodash";
+import axios from "axios";
 
+const keys = {
+  accomplishment_courses: "Courses",
+  languages: "Languages",
+  education: "Education",
+  accomplishment_patents: "Patents",
+  certifications: "Certs",
+  accomplishment_projects: "Projects",
+  accomplishment_publications: "Publications",
+  volunteer_work: "Volunteering",
+  accomplishment_test_scores: "Test_Scores",
+  experiences: "Experiences",
+};
+
+const objMapper = (obj) => {
+  let newObj = _.mapKeys(obj, (value, key) => {
+    return key in keys ? keys[key] : key;
+  });
+  return newObj;
+};
 const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arrayTitle = [
   "Languages",
@@ -23,10 +44,16 @@ const arrayTitle = [
   "Test_Scores",
   "Experiences",
 ];
-const LinkedinProfile = () => {
+const LinkedinProfile = ({ userData, officialUrl }) => {
   const [profile, setProfile] = useRecoilState(profileState);
   const [canvas, setCanvas] = useRecoilState(canvasState);
-  const linkedinUrl = useRecoilValue(linkedinState);
+  const [linkedinUrl, setLinkedinUrl] = useRecoilState(linkedinState);
+
+  useEffect(() => {
+    const renamed_data = objMapper(userData);
+    setProfile(renamed_data);
+    setLinkedinUrl(officialUrl);
+  }, []);
 
   return (
     <div className="flex flex-col h-screen pt-24 px-20">
@@ -115,3 +142,20 @@ const LinkedinProfile = () => {
 };
 
 export default LinkedinProfile;
+
+export async function getServerSideProps(ctx) {
+  const { url } = ctx.params;
+  const officialUrl = `https://www.linkedin.com/in/${url[0]}`;
+  const options = {
+    method: "GET",
+    url: "https://linkedin-profile-data.p.rapidapi.com/linkedin-data",
+    params: { url: officialUrl },
+    headers: {
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
+      "X-RapidAPI-Host": "linkedin-profile-data.p.rapidapi.com",
+    },
+  };
+  let { data: userData } = await axios(options);
+
+  return { props: { userData, officialUrl } };
+}
