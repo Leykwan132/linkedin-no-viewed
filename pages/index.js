@@ -31,6 +31,7 @@ export default function Home() {
   const router = useRouter();
   const [profile, setProfile] = useRecoilState(profileState);
   const [linkedinUrl, setLinkedinUrl] = useRecoilState(linkedinState);
+  const [isClicked, setIsClicked] = useState(false);
 
   const {
     register,
@@ -78,6 +79,7 @@ export default function Home() {
     }
   };
   const onSubmit = (data) => {
+    setIsClicked(true);
     fetchProfileData(data.profileUrl);
   };
 
@@ -115,12 +117,26 @@ export default function Home() {
         )}
 
         <button
+          disabled={isClicked}
           type={"submit"}
           className={`${
             stalk ? "bg-red-500" : "bg-sky-500"
           } p-2 text-xs px-4 mt-4 rounded-md font-mono`}
         >
-          {stalk ? "Stalk the profile" : "Search the profile"}
+          <div className="flex items-center justify-center">
+            {isClicked ? (
+              <div
+                class="spinner-border animate-spin inline-block w-4 h-4 border-4 rounded-full"
+                role="status"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            ) : stalk ? (
+              <span>Stalk the profile</span>
+            ) : (
+              <span>Search the profile</span>
+            )}
+          </div>
         </button>
       </form>
       <div className="fixed bottom-2 font-mono">

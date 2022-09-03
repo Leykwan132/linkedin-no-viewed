@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import { Toaster } from "react-hot-toast";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   RecoilRoot,
   atom,
@@ -9,6 +9,13 @@ import {
   useRecoilValue,
 } from "recoil";
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    const use = async () => {
+      (await import("tw-elements")).default;
+    };
+    use();
+  }, []);
+
   return (
     <>
       <RecoilRoot>
