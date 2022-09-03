@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { profileState, linkedinState } from "../atoms/profileAtoms.ts";
 import _ from "lodash";
+import { supabase } from "../utils/supabaseClient.tsx";
 
 const keys = {
   accomplishment_courses: "Courses",
@@ -27,8 +28,9 @@ const objMapper = (obj) => {
   return newObj;
 };
 
-export default function Home() {
+export default function Home({ searchCount }) {
   const router = useRouter();
+
   const [profile, setProfile] = useRecoilState(profileState);
   const [linkedinUrl, setLinkedinUrl] = useRecoilState(linkedinState);
   const [isClicked, setIsClicked] = useState(false);
@@ -71,6 +73,12 @@ export default function Home() {
         setLinkedinUrl(profileUrl);
         router.push("/profile/" + renamed_data.last_name);
         setValue("profileUrl", "");
+
+        const updatedCount = searchCount + 1;
+        await supabase
+          .from("times_visited")
+          .update({ searches_made: updatedCount })
+          .eq("id", 1);
       }
     } catch (err) {
       toast.error("Error!", {
@@ -140,8 +148,20 @@ export default function Home() {
         </button>
       </form>
       <div className="fixed bottom-2 font-mono">
-        Total profile searched so far: 12
+        {`Total profile searched so far: ${searchCount}`}
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  let { data: times_visited, error } = await supabase
+    .from("times_visited")
+    .select("searches_made");
+
+  const searchCount = times_visited[0].searches_made;
+
+  // Pass data to the page via props
+  return { props: { searchCount } };
 }
