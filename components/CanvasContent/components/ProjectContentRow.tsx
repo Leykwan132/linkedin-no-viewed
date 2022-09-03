@@ -38,7 +38,6 @@ const ProjectContentRow = ({ data }: Props) => {
     }
   }
 
-  console.log(data);
   return (
     <div className="font-mono flex flex-col text-[15px] space-y-3 max-w-[480px]">
       <div className="flex items-center justify-between">
