@@ -1,13 +1,9 @@
 import "../styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import React, { useEffect } from "react";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { RecoilRoot } from "recoil";
+import Header from "../components/Header.tsx";
+
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const use = async () => {
@@ -20,6 +16,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <RecoilRoot>
         <Toaster />
+        <Header />
         <Component {...pageProps} />
       </RecoilRoot>
     </>
