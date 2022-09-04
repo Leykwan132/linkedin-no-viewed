@@ -3,36 +3,11 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { profileState, linkedinState } from "../atoms/profileAtoms.ts";
 import _ from "lodash";
 import { supabase } from "../utils/supabaseClient.tsx";
 
-const keys = {
-  accomplishment_courses: "Courses",
-  languages: "Languages",
-  education: "Education",
-  accomplishment_patents: "Patents",
-  certifications: "Certs",
-  accomplishment_projects: "Projects",
-  accomplishment_publications: "Publications",
-  volunteer_work: "Volunteering",
-  accomplishment_test_scores: "Test_Scores",
-  experiences: "Experiences",
-};
-
-const objMapper = (obj) => {
-  let newObj = _.mapKeys(obj, (value, key) => {
-    return key in keys ? keys[key] : key;
-  });
-  return newObj;
-};
-
 export default function Home({ searchCount }) {
   const router = useRouter();
-
-  const [profile, setProfile] = useRecoilState(profileState);
-  const [linkedinUrl, setLinkedinUrl] = useRecoilState(linkedinState);
   const [isClicked, setIsClicked] = useState(false);
 
   const {

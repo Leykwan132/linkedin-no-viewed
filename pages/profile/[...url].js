@@ -11,26 +11,8 @@ import Link from "next/link";
 import CanvasContent from "../../components/canvasContent.tsx";
 import _ from "lodash";
 import axios from "axios";
+import { objKeyMapper } from "../../utils/objKeyMapping.ts";
 
-const keys = {
-  accomplishment_courses: "Courses",
-  languages: "Languages",
-  education: "Education",
-  accomplishment_patents: "Patents",
-  certifications: "Certs",
-  accomplishment_projects: "Projects",
-  accomplishment_publications: "Publications",
-  volunteer_work: "Volunteering",
-  accomplishment_test_scores: "Test_Scores",
-  experiences: "Experiences",
-};
-
-const objMapper = (obj) => {
-  let newObj = _.mapKeys(obj, (value, key) => {
-    return key in keys ? keys[key] : key;
-  });
-  return newObj;
-};
 const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arrayTitle = [
   "Languages",
@@ -50,7 +32,7 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
   const [linkedinUrl, setLinkedinUrl] = useRecoilState(linkedinState);
 
   useEffect(() => {
-    const renamed_data = objMapper(userData);
+    const renamed_data = objKeyMapper(userData);
     setProfile(renamed_data);
     setLinkedinUrl(officialUrl);
   }, []);
