@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import React from "react";
+import { dateRangeFormatter } from "../../../utils/dateRangeFormatter.ts";
 
 type Props = {
   data?: Object;
@@ -21,12 +22,7 @@ const Month = {
 };
 
 const CertContextRow = ({ data }: Props) => {
-  let start_date;
-  if (data.starts_at.month) {
-    start_date = Month[data.starts_at.month] + data.starts_at.year;
-  } else {
-    start_date = data.starts_at.year;
-  }
+  const start_date = dateRangeFormatter(data, true);
 
   return (
     <div className="font-mono flex flex-col text-[15px] space-y-3">
