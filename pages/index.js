@@ -129,9 +129,9 @@ export default function Home({ searchCount }) {
           </div>
         </button>
       </form>
-      <div className="fixed bottom-2 font-mono">
+      <p className="fixed bottom-8 font-mono text-sm md:text-white">
         {`Total profile searched so far: ${searchCount}`}
-      </div>
+      </p>
     </div>
   );
 }
