@@ -6,21 +6,6 @@ type Props = {
   data?: Object;
 };
 
-const Month = {
-  1: "Jan",
-  2: "Feb",
-  3: "Mar",
-  4: "Apr",
-  5: "May",
-  6: "June",
-  7: "Jul",
-  8: "Aug",
-  9: "Sept",
-  10: "Oct",
-  11: "Nov",
-  12: "Dec",
-};
-
 const CertContextRow = ({ data }: Props) => {
   const start_date = dateRangeFormatter(data, true);
 
