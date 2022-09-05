@@ -15,7 +15,7 @@ const CertContent = (props: Props) => {
       {certData.length <= 2
         ? certData.map((item, i) => <CertContextRow key={i} data={item} />)
         : counter.map((item, i) => (
-            <CertContextRow key={i} data={expData[item]} />
+            <CertContextRow key={i} data={certData[item]} />
           ))}
     </div>
   );
