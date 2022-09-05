@@ -24,7 +24,7 @@ const EduContentRow = ({ data }: Props) => {
       <div className="flex items-center justify-between">
         <p className="text-xs font-light text-left">{data.degree_name}</p>
         {data.field_of_study && (
-          <p className="text-xs font-light text-right">{`${data.field_of_study}`}</p>
+          <p className="text-xs font-bold text-right">{`${data.field_of_study}`}</p>
         )}
       </div>
     </div>
