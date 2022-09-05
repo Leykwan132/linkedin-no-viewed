@@ -5,7 +5,6 @@ import {
   useRecoilValue,
   useSetRecoilState,
 } from "recoil";
-import { canvasState } from "../atoms/profileAtoms.ts";
 import {
   AcademicCapIcon,
   BeakerIcon,
@@ -19,10 +18,15 @@ import {
   HeartIcon,
 } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
-import { profileState } from "../atoms/profileAtoms.ts";
+import {
+  profileState,
+  mobileMenuState,
+  canvasState,
+} from "../atoms/profileAtoms.ts";
 
 type Props = {
   title?: String;
+  mobile?: Boolean;
 };
 
 const Title = {
@@ -39,21 +43,22 @@ const Title = {
 };
 
 const Icon = {
-  Languages: <LanguageIcon className="w-4 h-4 absolute left-6 " />,
-  Education: <AcademicCapIcon className="w-4 h-4  absolute left-6 " />,
-  Patents: <BeakerIcon className="w-4 h-4 absolute left-6 " />,
-  Certs: <DocumentTextIcon className="w-4 h-4 absolute left-6 " />,
-  Projects: <ChartBarIcon className="w-4 h-4 absolute left-6 " />,
-  Publications: <CommandLineIcon className="w-4 h-4 absolute left-6 " />,
-  Courses: <CubeIcon className="w-4 h-4 absolute left-6 " />,
-  Volunteering: <HeartIcon className="w-4 h-4 absolute left-6 " />,
-  Test_Scores: <DocumentChartBarIcon className="w-4 h-4 absolute left-6 " />,
-  Experiences: <BriefcaseIcon className="w-4 h-4 absolute left-6 " />,
+  Languages: <LanguageIcon className="w-4 h-4  " />,
+  Education: <AcademicCapIcon className="w-4 h-4   " />,
+  Patents: <BeakerIcon className="w-4 h-4  " />,
+  Certs: <DocumentTextIcon className="w-4 h-4  " />,
+  Projects: <ChartBarIcon className="w-4 h-4  " />,
+  Publications: <CommandLineIcon className="w-4 h-4  " />,
+  Courses: <CubeIcon className="w-4 h-4  " />,
+  Volunteering: <HeartIcon className="w-4 h-4  " />,
+  Test_Scores: <DocumentChartBarIcon className="w-4 h-4  " />,
+  Experiences: <BriefcaseIcon className="w-4 h-4  " />,
 };
-const FloatingButton = ({ title }: Props) => {
+const FloatingButton = ({ title, mobile }: Props) => {
   const [profile, setProfile] = useRecoilState(profileState);
   const canvasData = useRecoilValue(canvasState);
   const setCanvasState = useSetRecoilState(canvasState);
+  const [showMobileMenu, setShowMobileMenu] = useRecoilState(mobileMenuState);
 
   const handleClick = () => {
     if (profile[title].length === 0) {
@@ -67,30 +72,44 @@ const FloatingButton = ({ title }: Props) => {
         );
         setCanvasState(title);
       }
+      if (mobile) {
+        setShowMobileMenu(false);
+      }
     }
   };
-  return (
-    <div
-      className={`${
-        profile[title].length === 0
-          ? "cursor-not-allowed border-gray-500"
-          : "cursor-pointer hover:scale-110 ease-in-out duration-200  hover:border-white border-gray-500"
-      }  
+
+  if (profile) {
+    return (
+      <div
+        className={`${
+          profile[title].length === 0
+            ? "cursor-not-allowed border-gray-500"
+            : "cursor-pointer hover:scale-110 ease-in-out duration-200  hover:border-white border-gray-500"
+        }  
+      ${!mobile ? " py-7 text-[13px]" : "py-4 px-2  text-[11px]"}
       ${canvasData === title && "bg-gradient-to-r to-gray-600 from-slate-800"}
-      relative grid place-items-center border py-7 text-[13px] rounded-xl font-mono `}
-      onClick={handleClick}
-    >
-      <div className="flex justify-center items-center">
-        {Icon[title]}
-        <div>{Title[title]}</div>
-        <span
-          className={`absolute text-[12px] right-6 ${
-            profile[title].length === 0 && "text-red-600"
-          }`}
-        >{`[${profile[title].length}]`}</span>
+      border rounded-xl font-mono
+      
+      `}
+        onClick={handleClick}
+      >
+        <div
+          className={`flex ${
+            mobile ? "justify-between space-x-3" : "justify-around"
+          } items-center`}
+        >
+          <div className="hidden md:block">{Icon[title]}</div>
+          <div>{Title[title]}</div>
+          <span
+            className={`  ${profile[title].length === 0 && "text-red-600"}
+          ${!mobile ? "text-[12px]" : "text-[10px]"}
+
+         `}
+          >{`[${profile[title].length}]`}</span>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default FloatingButton;
