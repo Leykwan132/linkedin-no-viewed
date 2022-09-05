@@ -17,3 +17,8 @@ export const linkedinState = atom({
   key: "linkedin", // unique ID (with respect to other atoms/selectors)
   default: "", // default value (aka initial value)
 });
+
+export const mobileMenuState = atom({
+  key: "mobileMenu", // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});
