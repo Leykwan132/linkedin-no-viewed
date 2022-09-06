@@ -9,17 +9,12 @@ const ProjectContent = (props: Props) => {
   const profileData = useRecoilValue(profileState);
   const canvasData = useRecoilValue(canvasState);
   const projectData = profileData[canvasData];
-  const counter = [0, 1, 2];
 
   return (
     <div className="space-y-6 fade w-full">
-      {projectData.length <= 2
-        ? projectData.map((item, i) => (
-            <ProjectContentRow key={i} data={item} />
-          ))
-        : counter.map((item, i) => (
-            <ProjectContentRow key={i} data={projectData[item]} />
-          ))}
+      {projectData.map((item, i) => (
+        <ProjectContentRow key={i} data={item} />
+      ))}
     </div>
   );
 };
