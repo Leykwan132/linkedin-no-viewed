@@ -22,3 +22,8 @@ export const mobileMenuState = atom({
   key: "mobileMenu", // unique ID (with respect to other atoms/selectors)
   default: false, // default value (aka initial value)
 });
+
+export const isMobileState = atom({
+  key: "isMobile", // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});
