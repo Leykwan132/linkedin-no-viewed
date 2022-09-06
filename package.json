@@ -24,6 +24,7 @@
     "react-icons": "^4.4.0",
     "recoil": "^0.7.5",
     "recoil-persist": "^4.2.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tw-elements": "^1.0.0-alpha12"
   },
   "devDependencies": {
