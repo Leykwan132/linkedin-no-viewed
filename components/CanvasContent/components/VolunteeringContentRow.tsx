@@ -32,10 +32,10 @@ const VolunteeringContentRow = ({ data }: Props) => {
               {data.company}
             </a>
           ) : (
-            <p className="font-bold cursor-default">{data.company}</p>
+            <p className="font-bold cursor-default text-left">{data.company}</p>
           )}
         </div>
-        {isMobile ? (
+        {isMobile && data_range !== "" ? (
           <div className="flex items-center space-x-2">
             <CalendarDaysIcon className="w-5 h-5 " />
             <p className="text-xs font-thin md:text-right text-left md:ml-9">
