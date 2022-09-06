@@ -57,7 +57,6 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
     } else {
       setIsMobile(false);
     }
-    console.log(isMobile);
   }, [handleResize]);
 
   return (
