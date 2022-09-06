@@ -2,6 +2,9 @@ import { Avatar } from "@mui/material";
 import { GiSelfLove } from "react-icons/gi";
 import React from "react";
 import { dateRangeFormatter } from "../../../utils/dateRangeFormatter.ts";
+import { isMobileState } from "../../../atoms/profileAtoms.ts";
+import { useRecoilState } from "recoil";
+import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   data?: Object;
@@ -9,9 +12,11 @@ type Props = {
 
 const VolunteeringContentRow = ({ data }: Props) => {
   const data_range = dateRangeFormatter(data);
+  const [isMobile, setIsMobile] = useRecoilState(isMobileState);
+
   return (
-    <div className="font-mono flex flex-col text-[15px] space-y-3">
-      <div className="flex items-center justify-between">
+    <div className="font-mono flex flex-col text-[12px] md:text-[15px] space-y-3">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0">
         <div className="flex items-center space-x-2 max-w-sm">
           <Avatar
             alt="logo"
@@ -30,11 +35,22 @@ const VolunteeringContentRow = ({ data }: Props) => {
             <p className="font-bold cursor-default">{data.company}</p>
           )}
         </div>
-        <p className="text-xs font-thin ml-9">{data_range}</p>
+        {isMobile ? (
+          <div className="flex items-center space-x-2">
+            <CalendarDaysIcon className="w-5 h-5 " />
+            <p className="text-xs font-thin md:text-right text-left md:ml-9">
+              {data_range}
+            </p>
+          </div>
+        ) : (
+          <p className="text-xs font-thin md:text-right text-left md:ml-9">
+            {data_range}
+          </p>
+        )}
       </div>
-      <div className="flex items-center space-x-2">
-        <GiSelfLove className="text-red-400" />
-        <p className=" text-[11px] font-extralight">{data.title}</p>
+      <div className="flex items-center space-x-3">
+        <GiSelfLove className="text-red-400 w-5 h-5" />
+        <p className=" text-[11px] font-extralight text-left">{data.title}</p>
       </div>
     </div>
   );
