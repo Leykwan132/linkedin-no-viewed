@@ -24,7 +24,7 @@ export default function Home({ searchCount }) {
       url: "https://linkedin-profile-data.p.rapidapi.com/linkedin-data",
       params: { url: profileUrl },
       headers: {
-        "X-RapidAPI-Key": "e9681673famshafacdda02c1e855p1d73a4jsnf0e3ecef6ff0",
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
         "X-RapidAPI-Host": "linkedin-profile-data.p.rapidapi.com",
       },
     };
@@ -43,17 +43,7 @@ export default function Home({ searchCount }) {
           id: toastId,
         });
 
-        if (profileUrl.endsWith("/")) {
-          router.push(
-            "/profile/" +
-              profileUrl.split("/")[profileUrl.split("/").length - 2]
-          );
-        } else {
-          router.push(
-            "/profile/" +
-              profileUrl.split("/")[profileUrl.split("/").length - 1]
-          );
-        }
+        router.push("/profile/" + data.public_identifier);
         setValue("profileUrl", "");
 
         const updatedCount = searchCount + 1;
