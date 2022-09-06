@@ -17,6 +17,7 @@ import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { TbHandClick } from "react-icons/tb";
 import FadeInOut from "../../utils/FadeInOut";
 import { mobileMenuState } from "../../atoms/profileAtoms.ts";
+import { isMobileState } from "../../atoms/profileAtoms.ts";
 
 const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arrayTitle = [
@@ -36,7 +37,10 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
   const [canvas, setCanvas] = useRecoilState(canvasState);
   const [linkedinUrl, setLinkedinUrl] = useRecoilState(linkedinState);
   const [showMobileMenu, setShowMobileMenu] = useRecoilState(mobileMenuState);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useRecoilState(isMobileState);
+  const [width, setWidth] = useState(0); // default width, detect on server.
+  const handleResize = () => setWidth(window.innerWidth);
+
   useEffect(() => {
     const renamed_data = objKeyMapper(userData);
     setProfile(renamed_data);
@@ -45,6 +49,16 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
       setIsMobile(true);
     }
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    if (window.innerWidth <= 800) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+    console.log(isMobile);
+  }, [handleResize]);
 
   return (
     <div className="relative flex flex-col h-screen pt-20 md:pt-24 px-5 md:px-20">
@@ -76,45 +90,15 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
             <div
               className={`${
                 isMobile ? "fade" : "fadeRightMini"
-              } relative mt-2 p-5 md:p-0 flex overflow-y-hidden overflow-x-hidden flex-col h-[72vh] md:h-[300px] w-[600px] border border-gray-400 rounded-2xl  items-center space-y-4 justify-center `}
+              } relative  mt-2 p-5 md:pt-2 md:flex flex-col h-[72vh] md:h-[300px] w-[600px] border border-gray-400 rounded-2xl  text-center md:items-center space-y-4 md:justify-center `}
             >
-              <div className="inline md:hidden">
+              <div className="fixed top-[18%] left-[50%] translate-x-[-50%] md:hidden">
                 <Avatar
                   src={profile?.profile_pic_url}
-                  sx={{ width: 150, height: 150 }}
+                  sx={{ width: 180, height: 180 }}
                 />
               </div>
-
-              {canvas === "Bio" ? (
-                <>
-                  <div className="text-gray-300 font-mono font-bold text-xl md:text-3xl fade truncate ">
-                    {profile?.full_name}
-                  </div>
-                  <div className="text-gray-300 font-mono font-semibold fade text-xs md:text-base">
-                    {`${profile?.city}, ${profile?.country_full_name}`}
-                  </div>
-                  <p className="text-gray-300 font-mono font-semibold max-w-[500px] text-xs md:text-base fade text-center">
-                    {`${profile?.Education[0]?.degree_name}, ${profile?.Education[0]?.field_of_study}`}
-                  </p>
-                  <div className="flex items-center fade  space-x-2">
-                    <Image
-                      src={profile?.Education[0]?.logo_url}
-                      className="rounded-full flex-shrink-0"
-                      objectFit="contain"
-                      width="25px"
-                      height="25px"
-                    />
-                    <p className="text-gray-300 text-xs md:text-base font-mono font-semibold text-center">
-                      {profile?.Education[0]?.school}
-                    </p>
-                  </div>
-                  <p className="text-gray-300 text-xs md:text-base fade font-mono font-semibold text-center max-w-[500px]">
-                    {`Current ${profile?.headline}`}
-                  </p>
-                </>
-              ) : (
-                <CanvasContent />
-              )}
+              <CanvasContent />
             </div>
           </div>
           <div className="hidden mt-5 md:mt-20 md:grid grid-cols-2 md:grid-cols-5 gap-5 md:gap-10 fade">
