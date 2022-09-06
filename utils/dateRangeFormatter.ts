@@ -44,5 +44,9 @@ export const dateRangeFormatter = (data, startDateOnly: Props) => {
     }
   }
 
+  if (!data.starts_at.year && !data.ends_at.year) {
+    return "";
+  }
+
   return `${start_date} - ${end_date}`;
 };
