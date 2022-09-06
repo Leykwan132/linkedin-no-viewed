@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { canvasState, profileState } from "../atoms/profileAtoms.ts";
+import {
+  canvasState,
+  profileState,
+  isMobileState,
+} from "../atoms/profileAtoms.ts";
+import BioContent from "./CanvasContent/BioContent.tsx";
 import CertContent from "./CanvasContent/CertContent.tsx";
 import CoursesContent from "./CanvasContent/CoursesContent.tsx";
 import EduContent from "./CanvasContent/EduContent.tsx";
@@ -23,6 +28,7 @@ interface Content {
   Volunteering?: any;
   Publications?: any;
   Courses?: any;
+  Bio?: any;
 }
 const contentType: Content = {
   Education: <EduContent />,
@@ -33,11 +39,32 @@ const contentType: Content = {
   Certs: <CertContent />,
   Projects: <ProjectContent />,
   Courses: <CoursesContent />,
+  Bio: <BioContent />,
 };
 const CanvasContent = (props: Props) => {
-  const profileData = useRecoilValue(profileState);
   const canvasData = useRecoilValue(canvasState);
-  return <div>{contentType[canvasData]}</div>;
+  const isMobile = useRecoilValue(isMobileState);
+  return (
+    <div
+      className={`${
+        isMobile &&
+        "fixed  top-[39%] right-[50%] translate-x-[50%] min-w-[300px] max-h-[330px] "
+      } max-w-2xl mx-auto overflow-y-scroll scrollbar-hide`}
+    >
+      {isMobile &&
+        canvasData !== "Bio" &&
+        (canvasData === "Test_Scores" ? (
+          <div className="font-mono text-white text-center font-bold text-xl mb-1">
+            Test Scores
+          </div>
+        ) : (
+          <div className="font-mono text-white text-center font-bold text-xl mb-1">
+            {canvasData}
+          </div>
+        ))}
+      {contentType[canvasData]}
+    </div>
+  );
 };
 
 export default CanvasContent;
