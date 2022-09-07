@@ -80,8 +80,8 @@ const CanvasContent = (props: Props) => {
       {isMobile &&
         canvasData !== "Bio" &&
         (canvasData === "Test_Scores" ? (
-          <div className="font-mono text-white text-center font-bold text-xl mb-1 flex items-center space-x-2">
-            <TestScore />
+          <div className="font-mono text-white justify-center font-bold text-xl mb-1 flex items-center space-x-2">
+            <div>{Icon[canvasData]}</div>
             <p>Test Scores</p>
           </div>
         ) : (
