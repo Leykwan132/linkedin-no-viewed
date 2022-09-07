@@ -9,7 +9,7 @@ const BioContent = (props: Props) => {
   const profileData = useRecoilValue(profileState);
 
   return (
-    <div className="flex flex-col space-y-5">
+    <div className="flex flex-col space-y-5 items-center">
       <div
         className={`text-gray-300 font-mono font-bold text-xl md:text-3xl fade truncate `}
       >
