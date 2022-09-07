@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import { supabase } from "../utils/supabaseClient.tsx";
+import Head from "next/head";
 
 export default function Home({ searchCount }) {
   const router = useRouter();
@@ -65,6 +66,13 @@ export default function Home({ searchCount }) {
 
   return (
     <div className="relative flex flex-col font-bold justify-center items-center font-serif h-screen w-screen text-white bg-gray-800">
+      <Head>
+        <title>StalkyourLinkedin</title>
+        <meta
+          name="description"
+          content="I hope this tutorial is helpful for you"
+        />
+      </Head>
       <div className="flex space-x-2 items-center text-xl">
         {stalk ? (
           <h1

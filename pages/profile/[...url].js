@@ -18,6 +18,7 @@ import { TbHandClick } from "react-icons/tb";
 import FadeInOut from "../../utils/FadeInOut";
 import { mobileMenuState } from "../../atoms/profileAtoms.ts";
 import { isMobileState } from "../../atoms/profileAtoms.ts";
+import Head from "next/head";
 
 const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arrayTitle = [
@@ -61,6 +62,13 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
 
   return (
     <div className="relative flex flex-col h-screen pt-20 md:pt-24 px-5 md:px-20 bg-gray-800">
+      <Head>
+        <title>{profile.full_name}</title>
+        <meta
+          name="description"
+          content="I hope this tutorial is helpful for you"
+        />
+      </Head>
       {Object.values(profile).length > 0 && (
         <>
           <div
