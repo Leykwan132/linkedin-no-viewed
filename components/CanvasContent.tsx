@@ -74,8 +74,7 @@ const CanvasContent = (props: Props) => {
   return (
     <div
       className={`${
-        isMobile &&
-        "fixed  top-[39%] right-[50%] translate-x-[50%] min-w-[300px] max-h-[330px] "
+        isMobile && "min-w-[300px] max-h-[330px] row-span-2"
       } max-w-2xl mx-auto overflow-y-scroll scrollbar-hide`}
     >
       {isMobile &&

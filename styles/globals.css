@@ -29,6 +29,9 @@ a {
   }
 }
 
+.profile-row-grid {
+  grid-template-rows: 35% 65%;
+}
 .fadeLeftMini {
   animation: fadeLeftMini 1s;
   animation-fill-mode: both;

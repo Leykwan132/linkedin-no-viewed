@@ -88,13 +88,15 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
             </div>
             <div
               className={`${
-                isMobile ? "fade" : "fadeRightMini"
-              } relative  mt-2 p-5 md:pt-2 md:flex flex-col h-[72vh] md:h-[300px] w-[600px] border border-gray-400 rounded-2xl  text-center md:items-center space-y-4 md:justify-center `}
+                isMobile
+                  ? "fade grid grid-cols-1 gap-3 profile-row-grid"
+                  : "fadeRightMini flex flex-col justify-center items-center  space-y-4"
+              } relative  mt-2 p-5 md:pt-2  h-[72vh] md:h-[300px] w-[600px] border border-gray-400 rounded-2xl`}
             >
-              <div className="fixed top-[18%] left-[50%] translate-x-[-50%] md:hidden">
+              <div className="md:hidden row-span-1 flex items-end justify-center">
                 <Avatar
                   src={profile?.profile_pic_url}
-                  sx={{ width: 180, height: 180 }}
+                  sx={{ width: 140, height: 140 }}
                 />
               </div>
               <CanvasContent />
@@ -110,7 +112,7 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 font-mono w-60 md:mt-10 bg-[#0077b5] py-3 px-9 rounded-lg text-center md:self-center text-xs "
+              className="mt-5 font-mono w-60 md:mt-10 bg-[#0077b5] py-3 px-9 rounded-lg text-center md:self-center text-xs z-20"
             >
               Lookup on Linkedin
             </a>
