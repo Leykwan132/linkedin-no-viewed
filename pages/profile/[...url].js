@@ -135,7 +135,7 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
           <div className=" absolute top-0 left-0 right-0 bottom-0 w-full h-full opacity-80 bg-gray-900"></div>
           <ArrowUturnLeftIcon
             onClick={() => setShowMobileMenu(false)}
-            className="right-[50%] bottom-[26%] translate-x-[50%] absolute inline-flex h-7 w-7 rounded-full border border-gray-500 p-2 z-30"
+            className="right-[50%] bottom-[26%] translate-x-[50%] absolute inline-flex h-7 w-7 rounded-full border border-gray-500 p-2 z-30 text-white"
           />
           <div
             className={`md:hidden right-[50%] bottom-[50%] z-20 absolute translate-x-[50%] translate-y-[50%] grid grid-cols-2 min-w-[280px] gap-2`}
