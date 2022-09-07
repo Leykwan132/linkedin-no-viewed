@@ -75,7 +75,7 @@ const CanvasContent = (props: Props) => {
     <div
       className={`${
         isMobile && "min-w-[300px] max-h-[330px] row-span-2"
-      } max-w-2xl mx-auto overflow-y-scroll scrollbar-hide`}
+      } max-w-2xl mx-auto overflow-y-scroll scrollbar-hide text-white`}
     >
       {isMobile &&
         canvasData !== "Bio" &&
