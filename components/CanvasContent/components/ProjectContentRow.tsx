@@ -20,6 +20,7 @@ const ProjectContentRow = ({ data }: Props) => {
             <a
               href={data.url}
               target="_blank"
+              rel="noopener noreferrer"
               className="font-bold hover:underline"
             >
               {data.name}

@@ -15,12 +15,14 @@ const Header = (props: Props) => {
         <a
           href="https://www.linkedin.com/in/ley-kwan-choo-129678228/"
           target={"_blank"}
+          rel="noopener noreferrer"
         >
           <AiFillLinkedin className="absolute right-12 w-7 h-7 mt-7 mr-7 cursor-pointer z-10 hover:text-gray-400" />
         </a>
         <a
           href="https://github.com/Leykwan132/linkedin-no-viewed"
           target={"_blank"}
+          rel="noopener noreferrer"
         >
           <AiFillGithub className="absolute right-0 w-7 h-7 mt-7 mr-7 cursor-pointer z-10 hover:text-gray-400" />
         </a>

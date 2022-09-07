@@ -21,6 +21,7 @@ const ExperienceContentRow = ({ data }: Props) => {
             <a
               href={data.company_linkedin_profile_url}
               target="_blank"
+              rel="noopener noreferrer"
               className="font-bold hover:underline md:no-underline underline text-left"
             >
               {data.company}

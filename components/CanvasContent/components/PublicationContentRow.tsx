@@ -11,6 +11,7 @@ const PublicationContentRow = ({ data }: Props) => {
         <a
           href={data.url}
           target="_blank"
+          rel="noopener noreferrer"
           className="font-bold hover:underline text-left underline md:no-underline"
         >
           {data.name}

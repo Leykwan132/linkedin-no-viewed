@@ -109,6 +109,7 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
             <a
               href={linkedinUrl}
               target="_blank"
+              rel="noopener noreferrer"
               className="mt-5 font-mono w-60 md:mt-10 bg-[#0077b5] py-3 px-9 rounded-lg text-center md:self-center text-xs "
             >
               Lookup on Linkedin
