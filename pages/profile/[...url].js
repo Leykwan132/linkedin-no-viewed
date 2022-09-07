@@ -112,7 +112,7 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 font-mono w-60 md:mt-10 bg-[#0077b5] py-3 px-9 rounded-lg text-center md:self-center text-xs z-20"
+              className="mt-5 font-mono w-60 md:mt-10 bg-[#0077b5] py-3 px-9 rounded-lg text-center md:self-center text-xs z-20 text-white"
             >
               Lookup on Linkedin
             </a>
@@ -122,7 +122,7 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
                 onClick={() => {
                   setCanvas("Bio");
                 }}
-                className="mt-5 font-mono w-60 md:mt-10 bg-gray-700 py-3 px-9 rounded-lg self-center text-xs "
+                className="mt-5 font-mono w-60 md:mt-10 bg-gray-700 py-3 px-9 rounded-lg self-center text-xs text-white"
               >
                 Search another Profile
               </button>
