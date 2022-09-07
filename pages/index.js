@@ -64,7 +64,7 @@ export default function Home({ searchCount }) {
   };
 
   return (
-    <div className="relative flex flex-col font-bold justify-center items-center font-serif h-screen w-screen text-white">
+    <div className="relative flex flex-col font-bold justify-center items-center font-serif h-screen w-screen text-white bg-gray-800">
       <div className="flex space-x-2 items-center text-xl">
         {stalk ? (
           <h1

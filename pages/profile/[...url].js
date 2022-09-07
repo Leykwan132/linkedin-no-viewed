@@ -60,7 +60,7 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
   }, [handleResize]);
 
   return (
-    <div className="relative flex flex-col h-screen pt-20 md:pt-24 px-5 md:px-20">
+    <div className="relative flex flex-col h-screen pt-20 md:pt-24 px-5 md:px-20 bg-gray-800">
       {Object.values(profile).length > 0 && (
         <>
           <div
