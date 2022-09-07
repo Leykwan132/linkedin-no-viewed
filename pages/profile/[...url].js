@@ -146,10 +146,16 @@ const LinkedinProfile = ({ userData, officialUrl }) => {
           </div>
         </div>
       </FadeInOut>
-      {!showMobileMenu && (
+      {!showMobileMenu && canvas === "Bio" && (
         <>
-          <div className="md:hidden animate-ping right-[10%] bottom-[20%] absolute block h-4 w-4 rounded-full bg-yellow-600 z-[-1] "></div>
-          <TbHandClick className="md:hidden right-[8%] bottom-[18%] absolute block h-4 w-4 z-[-1]" />
+          <div
+            onClick={() => setShowMobileMenu(true)}
+            className="md:hidden animate-ping right-[10%] bottom-[20%] absolute block h-4 w-4 rounded-full bg-yellow-600 z-[20] "
+          ></div>
+          <TbHandClick
+            onClick={() => setShowMobileMenu(true)}
+            className="md:hidden right-[8%] bottom-[18%] absolute block h-4 w-4 z-[20]"
+          />
         </>
       )}
     </div>
