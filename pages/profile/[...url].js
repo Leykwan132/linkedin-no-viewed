@@ -8,7 +8,7 @@ import {
 } from "../../atoms/profileAtoms.ts";
 import FloatingButton from "../../components/FloatingButton.tsx";
 import Link from "next/link";
-import CanvasContent from "../../components/canvasContent.tsx";
+import CanvasContent from "../../components/CanvasContent.tsx";
 import _ from "lodash";
 import axios from "axios";
 import { objKeyMapper } from "../../utils/objKeyMapping.ts";
