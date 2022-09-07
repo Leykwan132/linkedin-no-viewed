@@ -86,7 +86,7 @@ const FloatingButton = ({ title, mobile }: Props) => {
             ? "cursor-not-allowed border-gray-500"
             : "cursor-pointer hover:scale-110 ease-in-out duration-200  hover:border-white border-gray-500"
         }  
-      ${!mobile ? " py-7 text-[13px]" : "py-4 px-2  text-[11px]"}
+      ${!mobile ? " py-7 text-[13px]" : "py-4 px-2  text-[11px]  text-white"}
       ${canvasData === title && "bg-gradient-to-r to-gray-600 from-slate-800"}
       border rounded-xl font-mono
       
