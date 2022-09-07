@@ -11,7 +11,7 @@ const LanguageContentRow = ({ data }: Props) => {
   const [isMobile, setIsMobile] = useRecoilState(isMobileState);
 
   return (
-    <div className="font-mono text-white flex items-center space-x-3">
+    <div className="font-mono text-white flex items-center  md:text-[15px]  text-[12px] space-x-3">
       <Avatar
         alt="logo"
         className="bg-white"
@@ -20,7 +20,7 @@ const LanguageContentRow = ({ data }: Props) => {
         }.svg`}
         sx={{ width: 28, height: 28 }}
       />
-      <p className={`${isMobile && "text-sm"}`}>{data}</p>
+      <p>{data}</p>
     </div>
   );
 };
