@@ -106,10 +106,10 @@ export default function Home({ searchCount }) {
           <div className="flex items-center justify-center">
             {isClicked ? (
               <div
-                class="spinner-border animate-spin inline-block w-4 h-4 border-4 rounded-full"
+                className="spinner-border animate-spin inline-block w-4 h-4 border-4 rounded-full"
                 role="status"
               >
-                <span class="visually-hidden">Loading...</span>
+                <span className="visually-hidden">Loading...</span>
               </div>
             ) : stalk ? (
               <span>Stalk the profile</span>
