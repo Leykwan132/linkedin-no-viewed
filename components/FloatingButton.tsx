@@ -95,7 +95,7 @@ const FloatingButton = ({ title, mobile }: Props) => {
       >
         <div
           className={`flex ${
-            mobile ? "justify-between space-x-3" : "justify-around"
+            mobile ? "justify-between" : "justify-around "
           } items-center`}
         >
           <div className="hidden md:block">{Icon[title]}</div>
