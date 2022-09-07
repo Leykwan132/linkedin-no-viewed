@@ -5,6 +5,7 @@ import { dateRangeFormatter } from "../../../utils/dateRangeFormatter.ts";
 import { isMobileState } from "../../../atoms/profileAtoms.ts";
 import { useRecoilState } from "recoil";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
 type Props = {
   data?: Object;
@@ -24,14 +25,26 @@ const VolunteeringContentRow = ({ data }: Props) => {
             sx={{ width: 28, height: 28 }}
           />
           {data.company_linkedin_profile_url ? (
-            <a
-              href={data.company_linkedin_profile_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold hover:underline"
-            >
-              {data.company}
-            </a>
+            isMobile ? (
+              <a
+                href={data.company_linkedin_profile_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold hover:underline md:no-underline flex items-center text-left space-x-2"
+              >
+                <p>{data.company}</p>
+                <BsBoxArrowUpRight className="w-3 h-3 flex-shrink-0" />
+              </a>
+            ) : (
+              <a
+                href={data.company_linkedin_profile_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold hover:underline"
+              >
+                {data.company}
+              </a>
+            )
           ) : (
             <p className="font-bold cursor-default text-left">{data.company}</p>
           )}

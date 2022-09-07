@@ -3,6 +3,7 @@ import { dateRangeFormatter } from "../../../utils/dateRangeFormatter.ts";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import { isMobileState } from "../../../atoms/profileAtoms.ts";
 import { useRecoilState } from "recoil";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
 type Props = {
   data?: Object;
@@ -13,18 +14,30 @@ const ProjectContentRow = ({ data }: Props) => {
   const [isMobile, setIsMobile] = useRecoilState(isMobileState);
 
   return (
-    <div className="font-mono flex flex-col text-[15px] space-y-3 max-w-[480px] overflow-y-scroll scrollbar-hide">
+    <div className="font-mono flex flex-col text-[12px] md:text-[15px] space-y-3 max-w-[480px] overflow-y-scroll scrollbar-hide">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2 max-w-sm">
           {data.url ? (
-            <a
-              href={data.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold hover:underline"
-            >
-              {data.name}
-            </a>
+            isMobile ? (
+              <a
+                href={data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold hover:underline md:no-underline flex items-center text-left space-x-2"
+              >
+                <p>{data.name}</p>
+                <BsBoxArrowUpRight className="w-3 h-3 flex-shrink-0" />
+              </a>
+            ) : (
+              <a
+                href={data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold hover:underline"
+              >
+                {data.name}
+              </a>
+            )
           ) : (
             <p className="font-bold cursor-default">{data.title}</p>
           )}
