@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+https://user-images.githubusercontent.com/56620672/189187608-9fb280d8-621c-4781-9359-0985620093d2.mov
+
+
 ## About the Project
 It a way to view linkedin profile without showing your visits / switching to private mode (where you give up "Who has viewed your profile".)
 
