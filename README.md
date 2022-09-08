@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## About the Project
 It a way to view linkedin profile without showing your visits / switching to private mode (where you give up "Who has viewed your profile".)
 
-`It is responsive on both desktop and mobile.`
+It is responsive on both `desktop` and `mobile`.
 
 ## How to use the service
 Google the linkedin profile url and lookup the profile!
