@@ -26,12 +26,14 @@ const EduContentRow = ({ data }: Props) => {
       </div>
       <div className="flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:justify-between">
         {isMobile ? (
-          <div className="flex items-center space-x-2">
-            <AcademicCapIcon className="h-5 w-5 text-sky-500" />
-            <p className="text-[11px] font-light text-left">
-              {data.degree_name}
-            </p>
-          </div>
+          data.degree_name && (
+            <div className="flex items-center space-x-2">
+              <AcademicCapIcon className="h-5 w-5 text-sky-500" />
+              <p className="text-[11px] font-light text-left">
+                {data.degree_name}
+              </p>
+            </div>
+          )
         ) : (
           <p className="text-[11px] font-light text-left">{data.degree_name}</p>
         )}
