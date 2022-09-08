@@ -1,15 +1,22 @@
 import React from "react";
 import { AiFillGithub, AiOutlineHome, AiFillLinkedin } from "react-icons/ai";
 import Link from "next/link";
-import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
-
+import { useRecoilState } from "recoil";
+import { canvasState } from "./../atoms/profileAtoms.ts";
 type Props = {};
 
 const Header = (props: Props) => {
+  const [canvas, setCanvas] = useRecoilState(canvasState);
+
   return (
     <div className="relative">
       <Link href={"/"}>
-        <AiOutlineHome className="absolute left-0 w-7 h-7 mt-7 ml-7 cursor-pointer z-10 hover:text-gray-400 text-white" />
+        <AiOutlineHome
+          onClick={() => {
+            setCanvas("Bio");
+          }}
+          className="absolute left-0 w-7 h-7 mt-7 ml-7 cursor-pointer z-10 hover:text-gray-400 text-white"
+        />
       </Link>
       <div className="flex items-center">
         <a
