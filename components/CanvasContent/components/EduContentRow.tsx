@@ -36,7 +36,7 @@ const EduContentRow = ({ data }: Props) => {
           <p className="text-[11px] font-light text-left">{data.degree_name}</p>
         )}
         {data.field_of_study && (
-          <p className="text-[11px] font-bold text-left md:text-right">{`${data.field_of_study}`}</p>
+          <p className="text-[11px] font-bold text-left md:text-right md:ml-4">{`${data.field_of_study}`}</p>
         )}
       </div>
     </div>
